@@ -1,0 +1,36 @@
+<!-- Book card component template -->
+
+<mat-card class="book-card">
+    <!-- Bookmark -->
+    <button class="book-card__read-toggle"
+            [attr.aria-label]="bookCardConstants.ARIA_LABELS.TOGGLE"
+            (click)="toggleReadStatus()">
+        @if (book().isRead) {
+        <mat-icon class="book-card__read-toggle--icon read">bookmark</mat-icon>
+        } @else {
+        <mat-icon class="book-card__read-toggle--icon">bookmark_border</mat-icon>
+        }
+    </button>
+
+    <!-- Book card content with cover -->
+    <a class=book-card__link
+       [routerLink]="['/buecher', book().id]">
+        @if (book().coverUrl; as coverImage) {
+        <img class="book-cover"
+             [alt]="bookCardConstants.IMAGE_ALT(book().title)"
+             [src]="coverImage">
+        } @else {
+        <div class="book-cover__placeholder"
+             [attr.aria-label]="bookCardConstants.ARIA_LABELS.NO_COVER">
+            <mat-icon aria-hidden="true"
+                      class="book-cover__icon">menu_book</mat-icon>
+        </div>
+        }
+        <mat-card-content>
+            <h3 class="book-card__title">{{ book().title }}</h3>
+            @for(author of book().authors; track author) {
+            <span>{{ author }}{{ !$last ? ', ' : '' }}</span>
+            }
+        </mat-card-content>
+    </a>
+</mat-card>

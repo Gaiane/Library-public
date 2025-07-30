@@ -1,0 +1,11 @@
+/* =================
+   Genre page styles
+   ================= */
+.genre {
+     /* Genre title */
+     &__title {
+        font-weight: 400;
+        margin-bottom: 2rem;
+        margin-top: 0;
+    }
+}

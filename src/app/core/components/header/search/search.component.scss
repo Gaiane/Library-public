@@ -1,0 +1,13 @@
+/* ==================
+   Search input styles
+   ================== */
+
+.search-field {
+  border-radius: 5cap;
+  max-width: 500px;
+  width: 100%;
+
+  .mat-form-field-infix {
+    padding: 8px 16px;
+  }
+}

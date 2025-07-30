@@ -1,0 +1,19 @@
+<!-- Genre card -->
+<div class="genre-card"
+     [style.backgroundColor]="genre().color">
+   <!-- Card button -->
+   <button class="genre-card__button"
+           [attr.aria-label]="genreConstants.ARIA_LABELS.NAVIGATION_BUTTONS(genre().label)"
+           (click)="navigateToRoute()"
+           (keydown.enter)="navigateToRoute()">
+      <span class="genre-card__label">{{ genre().label }}</span>
+   </button>
+
+   <!-- Edit button -->
+   <button class="genre-card__edit-button"
+           [attr.aria-label]="genreConstants.ARIA_LABELS.EDIT_BUTTONS(genre().label)"
+           (click)="showEditGenreDialog()"
+           (keydown.enter)="showEditGenreDialog()">
+      <mat-icon>edit</mat-icon>
+   </button>
+</div>

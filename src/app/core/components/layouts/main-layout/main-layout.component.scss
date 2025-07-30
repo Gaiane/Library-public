@@ -1,0 +1,66 @@
+/* ==================
+   Main Layout styles
+   ================== */
+
+/* Side Navigation */
+.sidenav {
+    background-color: var(--mat-sys-primary);
+    border-radius: 5px;
+    margin-left: 8px;
+    width: 220px;
+
+    /* Side Navigation container */
+    &-container {
+        background-color: white;
+        inset: 100px 0 20px 0;
+        position: absolute;
+    }
+
+    /* Side Navigation Main content */
+    &-content {
+        background-color: var(--mat-sys-surface-container);
+        border-radius: 5px;
+        margin-left: 235px !important;
+        margin-right: 5px;
+
+        /* Side Navigation Main content area */
+        &__main {
+            padding: 40px 20px;
+        }
+    }
+
+    /* Side Navigation menu */
+    &-menu {
+        margin-top: 10px;
+
+        /* Side Navigation menu item */
+        &__item {
+            align-items: center;
+            display: flex;
+
+            &-icon {
+                color: var(--mat-sys-secondary-fixed) !important;
+            }
+
+            &-label {
+                color: var(--mat-sys-secondary-fixed);
+            }
+        }
+    }
+}
+
+/* Override material styles of Side Navigation menu */
+.mat-drawer-side {
+    border: 0;
+}
+
+/* Override material styles of Side Navigation menu item */
+.mdc-list-item.mdc-list-item--activated {
+    background-color: var(--mat-sys-secondary-fixed);
+    border-radius: 0;
+
+    .sidenav-menu__item-icon,
+    .sidenav-menu__item-label {
+        color: var(--mat-sys-primary) !important;
+    }
+}

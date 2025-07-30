@@ -1,0 +1,13 @@
+<!-- Homepage -->
+
+<div class="homepage">
+
+    <!-- Books  grid -->
+    @if(books().length>0) {
+        <div class="books__grid">
+            @for(book of books(); track book) {
+                <lib-book-card [book]="book"></lib-book-card>
+            }
+    </div>
+    }
+</div>

@@ -1,0 +1,24 @@
+<!-- All Genres page-->
+
+<!-- Genres page title-->
+<h1 class="page-title">{{ title() }}</h1>
+
+<div class="genres">
+    <!-- Add a new genre CTA -->
+    <div class="genres__add-new"
+         role="button"
+         tabindex="0"
+         [attr.aria-label]="buttonsConstants.ADD_NEW.ARIA_LABEL"
+         (click)="showAddGenreDialog()"
+         (keydown.enter)="showAddGenreDialog()">
+        <mat-icon class="genres__add-new_icon">add</mat-icon>
+        <h2 class="genres__add-new_label">{{buttonsConstants.ADD_NEW.LABEL}}</h2>
+    </div>
+
+    <!-- Genres -->
+        @for(genre of genres(); track genre.id) {
+        <lib-genre-card [genre]="genre"
+                        (genreUpdated)="onGenreUpdated($event)">
+        </lib-genre-card>
+        }
+</div>

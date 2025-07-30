@@ -1,0 +1,27 @@
+/* ====================
+   Genre edit dialog styles
+   ==================== */
+
+.edit-genre {
+
+    /* Dialog */
+    &-dialog {
+
+        // Dialog dontent
+        &__content {
+            padding-top: 10px !important;
+        }
+        // Dialog title
+        &__title {
+            color: var(--mat-sys-primary) !important;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+    }
+    /* Form */
+    &-form {
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+    }
+}

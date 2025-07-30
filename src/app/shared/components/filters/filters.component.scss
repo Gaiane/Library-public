@@ -1,0 +1,48 @@
+/* =============
+   Filters styles
+   ============= */
+
+:host {
+    margin-bottom: 20px;
+}
+
+// Filters 
+.filters {
+    &__header {
+        display: flex;
+        justify-content: flex-end;
+        margin-bottom: 20px;
+    }
+
+    &__grid {
+        align-items: flex-start;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        gap: 5px;
+    }
+
+
+    &__button {
+        &--reset {
+            text-transform: none;
+        }
+    }
+
+    &__selector {
+        max-width: 180px;
+    }
+}
+
+// Sorting
+.sorting__selector {
+    margin-left: auto;
+    max-width: 180px;
+}
+
+@media (max-width: 1200px) {
+    .sorting__selectors {
+        margin-left: 0;
+        order: 1;
+    }
+}

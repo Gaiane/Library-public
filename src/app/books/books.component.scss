@@ -1,0 +1,39 @@
+/* =====================
+   All Books page styles
+   ===================== */
+
+.books {
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(10rem, auto));
+    grid-gap: 1.5rem;
+    width: 100%;
+  }
+}
+
+/* Small devices */
+@media (max-width: 576px) {
+  .books {
+    &__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+/* Medium devices (tablets, portrait) */
+@media (min-width: 577px) and (max-width: 768px) {
+  .books {
+    &__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+}
+
+/* Large devices (landscape tablets, laptops, etc.) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .books {
+    &__grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+}

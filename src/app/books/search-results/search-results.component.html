@@ -1,0 +1,18 @@
+<!-- Search results page -->
+<!-- Title -->
+<h1 class="page-title">{{title}}</h1>
+
+<!-- Search results -->
+@if(searchResults() && searchResults().length > 0) {
+    @for(book of searchResults(); track book) {
+        <lib-book-card [book]="book"></lib-book-card>
+    }
+}
+<!-- If not results -->
+@else if(query()) {
+    <p class="no-results">{{searchResultsConstants.FALSE_SEARCH_RESULTS_TEXT}}</p>
+}
+<!-- If no query -->
+@else {
+    <p class="no-results">{{searchResultsConstants.NO_SEARCH_RESULTS_TEXT}}</p>
+}

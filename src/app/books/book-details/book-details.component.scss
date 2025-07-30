@@ -1,0 +1,165 @@
+.book {
+    align-items: stretch;
+    display: flex;
+    gap: 40px;
+    margin-bottom: 20px;
+
+    // Book cover 
+    &__cover {
+        align-items: center;
+        background-color: var(--mat-sys-primary-fixed);
+        border-radius: 8px;
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        justify-content: center;
+        max-width: 350px;
+        position: relative;
+
+        // Read status Toggle-button 
+        &-button {
+            align-items: center;
+            background: none;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            outline: none;
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            z-index: 10;
+
+            // Bookmark-Icon
+            &-icon {
+                color: var(--mat-sys-primary);
+                font-size: 1.75rem;
+                transition: all 0.3s ease;
+
+                &--read {
+                    transform: scale(1.1);
+                }
+
+                &--unread {
+                    color: var(--mat-sys-outline);
+                    opacity: 0.6;
+                }
+            }
+        }
+
+        // Cover image    
+        &-image {
+            height: 80%;
+            width: auto;
+        }
+
+        // No image placeholder    
+        &-placeholder-icon {
+            color: var(--mat-sys-outline);
+            font-size: 5rem;
+            height: 5rem;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+            width: 5rem;
+        }
+    }
+
+    // Book info 
+    &__info {
+        flex: 1;
+
+        // Book action buttons
+        &-buttons {
+            align-items: center;
+            display: flex;
+            gap: 10px;
+            justify-content: flex-start;
+            margin-top: 10px;
+        }
+
+        &-button {
+            &--edit {
+                color: var(--mat-sys-secondary-fixed) !important;
+            }
+
+            &--delete {
+                background-color: white;
+                color: #e53935 !important;
+            }
+        }
+
+        // Book details
+        &-details {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            margin-top: 50px;
+
+            &-item {
+                margin-bottom: 10px;
+
+                a {
+                    color: var(--mat-sys-on-surface-variant);
+                }
+
+                dd,
+                dt {
+                    display: inline;
+                }
+
+                dd {
+                    margin-inline-start: 5px;
+                }
+
+                dt {
+                    color: var(--mat-sys-outline);
+                }
+            }
+        }
+
+
+        // Book info header (title and authors)    
+        &-header {
+            &-author {
+                color: var(--mat-sys-on-surface-variant);
+                margin-bottom: 5px;
+                margin-top: 0;
+            }
+
+            &-title {
+                color: var(--mat-sys-on-secondary-container);
+                margin-top: 0;
+            }
+        }
+
+
+    }
+
+}
+
+
+
+form {
+    margin-top: 20px;
+    padding: 20px;
+}
+
+mat-slide-toggle {
+    margin-bottom: 15px;
+}
+
+mat-form-field {
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+@media (max-width: 600px) {
+    .book {
+        flex-direction: column;
+    }
+
+    .book__cover {
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
+}

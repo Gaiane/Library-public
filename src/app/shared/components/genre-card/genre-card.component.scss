@@ -1,0 +1,40 @@
+/* =============
+   Genre card styles
+   ============= */
+
+.genre-card {
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    height: 8rem;
+    padding: 20px;
+    position: relative;
+    width: auto;
+
+    /* Button with a label */
+    &__button {
+        all: unset;
+        cursor: pointer;
+        display: flex;
+        justify-content: flex-start;
+        height: 100%;
+        width: 100%;
+    }
+
+    /* Edit button with an icon */ 
+    &__edit-button {
+        all: unset;
+        color: white;
+        cursor: pointer;
+        position: absolute;
+        right: 15px;
+        top: 15px;
+    }
+
+    /* Card label */
+    &__label {
+        color: white;
+        font-size: 1.5rem;
+        font-weight: 500;
+    }
+}

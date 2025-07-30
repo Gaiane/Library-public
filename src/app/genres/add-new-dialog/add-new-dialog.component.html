@@ -1,0 +1,54 @@
+<!-- Dialog for adding of new genre -->
+<h1 mat-dialog-title
+    class="add-genre-dialog__title">
+    {{genreFormConstants.TITLES.DIALOG}}
+</h1>
+
+<!-- Dialog content -->
+<div mat-dialog-content
+     class="add-genre-dialog__content">
+    <form class="add-genre__form"
+          [formGroup]="genreForm">
+
+        <mat-form-field appearance="outline">
+            <mat-label>{{genreFormConstants.LABELS.INPUT_ID}}</mat-label>
+            <input matInput
+                   formControlName="id"
+                   [attr.aria-label]="genreFormConstants.ARIA_LABELS.INPUT_ID">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>{{genreFormConstants.LABELS.INPUT_COLOR}}</mat-label>
+            <input matInput
+                   formControlName="color"
+                   [attr.aria-label]="genreFormConstants.ARIA_LABELS.INPUT_COLOR">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>{{genreFormConstants.LABELS.INPUT_LABEL}}</mat-label>
+            <input matInput
+                   formControlName="label"
+                   [attr.aria-label]="genreFormConstants.ARIA_LABELS.INPUT_LABEL">
+        </mat-form-field>
+    </form>
+</div>
+
+<!-- Dialog actions -->
+<div mat-dialog-actions>
+    <button mat-stroked-button
+            class="dialog__button--cancel"
+            [attr.aria-label]="buttonConstants.CANCEL.ARIA_LABEL"
+            [mat-dialog-close]
+            (click)="cancel()"
+            (keydown.enter)="cancel()">
+        {{buttonConstants.CANCEL.LABEL}}
+    </button>
+    <button mat-flat-button
+            class="dialog__button--agreement"
+            color="primary"
+            [attr.aria-label]="buttonConstants.SAVE.ARIA_LABEL(commonConstants.GENRE)"
+            (click)="save()"
+            (keydown.enter)="save()">
+        {{buttonConstants.SAVE.LABEL}}
+    </button>
+</div>

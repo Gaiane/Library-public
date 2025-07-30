@@ -1,0 +1,54 @@
+<div class="filters">
+
+    <!-- Reset button-->
+    @if(hasActiveSelection()) {
+    <div class="filters__header">
+        <button mat-button
+                class="filters__button--reset"
+                [attr.aria-label]="buttonConstants.RESET.ARIA_LABEL"
+                (click)="resetFilters()">
+            <mat-icon>clear</mat-icon>
+            {{ buttonConstants.RESET.LABEL }}
+        </button>
+    </div>
+    }
+
+    <!-- Filters -->
+    <div class="filters__grid">
+        @for (select of filtersSelects; track select.key) {
+        <mat-form-field appearance="outline"
+                        class="filters__selector">
+            <mat-label>{{ select.label }}</mat-label>
+            <mat-select [attr.aria-label]="select.ariaLabel"
+                        [value]="select.value"
+                        (selectionChange)="onSelectionChange(select.key, $event.value)">
+                <mat-option [value]="''">{{commonConstants.ALL}}</mat-option>
+                @for (option of select.options; track option.value) {
+                <mat-option [value]="option.value">
+                    {{ option.viewValue }}
+                </mat-option>
+                }
+
+            </mat-select>
+        </mat-form-field>
+        }
+
+        <!-- Sorting -->
+        @if (sortingSelect) {
+        <mat-form-field appearance="outline"
+                        class="sorting__selector">
+            <mat-label>{{ sortingSelect.label }}</mat-label>
+            <mat-icon matPrefix>sort</mat-icon>
+            <mat-select [attr.aria-label]="sortingSelect.ariaLabel"
+                        [value]="sortingSelect.value"
+                        (selectionChange)="onSelectionChange(sortingSelect.key, $event.value)">
+                @for (option of sortingSelect.options; track option.value) {
+                <mat-option [value]="option.value">{{ option.viewValue }}</mat-option>
+                }
+            </mat-select>
+        </mat-form-field>
+        }
+    </div>
+
+
+</div>

@@ -1,0 +1,17 @@
+/* =============
+   Homepage styles
+   ============= */
+
+:host {
+    padding-left: 20%; 
+    padding-right: 20%; 
+}
+
+.books {
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(10rem, auto));
+    grid-gap: 1.5rem;
+    width: 100%;
+  }
+}

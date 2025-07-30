@@ -1,0 +1,20 @@
+<!-- All books-->
+<div class="books">
+    <!--Title-->
+    <h1 class="page-title">{{title()}}</h1>
+
+    <!-- Books  grid -->
+    @if(books().length > 0) {
+
+    <div class="books__grid">
+        @for(book of books(); track book.id) {
+        <lib-book-card [book]="book"></lib-book-card>
+        }
+    </div>
+    } @else {
+    <!-- No books -->
+    <div class="books__empty">
+        <p>{{commonConstants.NO_BOOKS_TEXT}}</p>
+    </div>
+    }
+</div>

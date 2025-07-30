@@ -1,0 +1,25 @@
+/* ====================
+   Add genre dialog styles
+   ==================== */
+
+.add-genre {
+    &-dialog {
+        // Content wrapper
+        &__content {
+            padding-top: 10px !important;
+        }
+        // Dialog title
+        &__title {
+            color: var(--mat-sys-primary) !important;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+    }
+    
+    // Add form 
+    &__form {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+}

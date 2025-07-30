@@ -1,0 +1,192 @@
+@if(book()) {
+<div class="book">
+    <div class="book__cover">
+        <!-- Button to toggle read status -->
+        <button aria-label="Toggle read status"
+                class="book__cover-button"
+                (click)="toggleReadStatus()">
+            @if (book().isRead) {
+            <mat-icon class="book__cover-button-icon book__cover-button-icon--read">bookmark</mat-icon>
+            } @else {
+            <mat-icon class="book__cover-button-icon">bookmark_border</mat-icon>
+            }
+        </button>
+
+        @if(book().cover) {
+        <!-- Display book cover if available -->
+        <img alt="Cover of {{book().title}}"
+             class="book__cover-image"
+             src="" />
+        } @else {
+        <!-- Placeholder if no cover available -->
+        <mat-icon aria-hidden="true"
+                  aria-label="No book cover available"
+                  class="book__cover-placeholder-icon">menu_book</mat-icon>
+        }
+    </div>
+
+    <div class="book__info">
+        <div class="book__info-header">
+            <!-- Book title -->
+            <h2 class="book__info-title">{{book().title}}</h2>
+
+            <!-- List of authors with links to filter by author -->
+            <div class="book__info-authors">
+                @for(author of book().authors; track author; let last=$last){
+                <span>
+                    <a class="book__info-author"
+                       [routerLink]="['/buecher']"
+                       [queryParams]="{author: author}">
+                        {{author}}{{last ? '' : ', '}}
+                    </a>
+                </span>
+                }
+            </div>
+        </div>
+
+        <!-- Book details -->
+        <div class="book__info-details">
+            <dl class="book__info-details-list">
+                <!-- Genre with link -->
+                <div class="book__info-details-item">
+                    <dt>{{bookDetails.GENRE}}:</dt>
+                    <dd>
+                        <a [routerLink]="['/genres', book().genre]">
+                            {{genreLabel()}}
+                        </a>
+                    </dd>
+                </div>
+
+                <!-- Book place -->
+                <div class="book__info-details-item">
+                    <dt>{{bookDetails.SHELF}}:</dt>
+                    <dd><a [routerLink]="['/buecher']"
+                           [queryParams]="{bookPlace: book().bookPlace}">
+                            {{book().bookPlace}}
+                        </a>
+                    </dd>
+                </div>
+
+                <!-- Library ID -->
+                <div class="book__info-details-item">
+                    <dt>{{bookDetails.LIBRARY_NUMBER}}:</dt>
+                    <dd>{{book().libraryId}}</dd>
+                </div>
+
+                <!-- Book type -->
+                <div class="book__info-details-item">
+                    <dt>{{bookDetails.TYPE}}:</dt>
+                    <dd>{{bookType}}</dd>
+                </div>
+
+                <!-- Publisher -->
+                <div class="book__info-details-item">
+                    <dt>{{bookDetails.PUBLISHER}}:</dt>
+                    <dd>
+                        <a [routerLink]="['/buecher']"
+                           [queryParams]="{publisher: book().publisher}">
+                            {{book().publisher}}
+                        </a>
+                    </dd>
+                </div>
+
+                <!-- Publication year -->
+                <div class="book__info-details-item">
+                    <dt>{{bookDetails.YEAR}}:</dt>
+                    <dd>{{book().year}}</dd>
+                </div>
+
+                <!-- Serie -->
+                @if (book().serie) {
+                <div class="book__info-details-item">
+                    <dt>{{bookDetails.SERIE}}:</dt>
+                    <dd>
+                        <a [routerLink]="['/buecher']"
+                           [queryParams]="{serie: book().serie}">
+                            {{book().serie}}
+                        </a>
+                    </dd>
+                </div>
+                }
+
+                <!-- ISBN -->
+                <div class="book__info-details-item">
+                    <dt>{{bookDetails.ISBN}}:</dt>
+                    <dd>{{book().isbn}}</dd>
+                </div>
+
+                <!-- Read status -->
+                <div class="book__info-details-item">
+                    <dt>{{bookDetails.READ_STATUS}}:</dt>
+                    <dd>{{readState}}</dd>
+                </div>
+
+                <!-- Loan status -->
+                <div class="book__info-details-item">
+                    <dt>{{bookDetails.LOAN_STATUS}}:</dt>
+                    <dd>{{lentStatus}}</dd>
+                    <!-- Optional toggle for loan status -->
+                    <!-- <mat-slide-toggle [checked]="isBookLent"
+                                      formControlName="lent"
+                                      (change)="toggleLendStatus($event)"></mat-slide-toggle> -->
+                </div>
+
+                @if (book().isLent) {
+                <!-- If book is lent, show borrower info -->
+                <div class="book__info-details-item">
+                    <dt>{{bookDetails.LENT_TO}}:</dt>
+                    <dd>
+                        {{book().borrowerName}} ({{bookDetails.SINCE}} {{book().dateOfLent}})
+                    </dd>
+                </div>
+                }
+            </dl>
+        </div>
+
+        <!-- Edit and delete buttons -->
+        <div class="book__info-buttons">
+            <button mat-flat-button
+                    class="book__info-button--edit"
+                    [attr.aria-label]="buttonConstants.EDIT.ARIA_LABEL(commonConstants.BOOK)"
+                    (click)="editBook(book())">
+                <mat-icon>edit</mat-icon> {{buttonConstants.EDIT.LABEL}}
+            </button>
+            <button mat-stroked-button
+                    class="book__info-button--delete"
+                    [attr.aria-label]="buttonConstants.DELETE.ARIA_LABEL(commonConstants.BOOK)"
+                    (click)="deleteBook(book().id)">
+                <mat-icon>delete</mat-icon> {{buttonConstants.DELETE.LABEL}}
+            </button>
+        </div>
+    </div>
+</div>
+}
+
+<!-- Form for editing book info -->
+<form [formGroup]="bookForm">
+    @if (isBookLent()) {
+    <!-- Show these inputs only if the book is lent -->
+    <ng-container>
+        <!-- Borrower's name -->
+        <mat-form-field appearance="outline"
+                        class="add-book-page_form-field">
+            <mat-label>Name of the borrower</mat-label>
+            <input formControlName="borrowerName"
+                   type="text"
+                   matInput>
+        </mat-form-field>
+
+        <!-- Loan date with datepicker -->
+        <mat-form-field appearance="outline"
+                        class="add-book-page_form-field">
+            <mat-label>Loan date</mat-label>
+            <input matInput
+                   [matDatepicker]="picker">
+            <mat-datepicker-toggle matIconSuffix
+                                   [for]="picker">
+            </mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+    </ng-container>
+    }
+</form>

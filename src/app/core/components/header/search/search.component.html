@@ -1,0 +1,39 @@
+<!-- Book search input field -->
+<mat-form-field appearance="outline"
+                class="search-field"
+                subscriptSizing="dynamic">
+
+    <input matInput
+           autocomplete="off"
+           maxlength="100"
+           [attr.aria-label]="searchInputConstants.ARIA_LABELS.INPUT"
+           [placeholder]="searchInputConstants.PLACEHOLDER"
+           [value]="searchQuery()"
+           (input)="onSearchChange($event)"
+           (keydown.enter)="search()">
+
+    <!-- Clear button when there's a query -->
+    @if (searchQuery()) {
+    <button mat-icon-button
+            matIconSuffix
+            type="button"
+            [attr.aria-label]="searchInputConstants.ARIA_LABELS.BUTTON_CLEAR"
+            (click)="clearSearch()"
+            (keydown.enter)="clearSearch()">
+        <mat-icon>clear</mat-icon>
+    </button>
+    }
+
+    <!-- TODO: check later -->
+    @if (!searchQuery()) {
+    <button mat-icon-button
+            matIconPrefix
+            type="button"
+            [attr.aria-label]="searchInputConstants.ARIA_LABELS.BUTTON_SEARCH"
+            [disabled]="!searchQuery()"
+            (click)="search()"
+            (keydown.enter)="search()">
+        <mat-icon>search</mat-icon>
+    </button>
+    }
+</mat-form-field>

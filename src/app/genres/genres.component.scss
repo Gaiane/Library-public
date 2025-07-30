@@ -1,0 +1,34 @@
+/* =============
+   Genres page styles
+   ============= */
+
+.genres {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(16rem, auto));
+    grid-gap: 1.5rem;
+
+    /* CTA - add a new genre */
+    &__add-new {
+        align-items: center;
+        border-radius: 5px;
+        border: 1px solid var(--mat-sys-primary);
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 8rem;
+        padding: 1.25rem;
+        width: auto;
+
+        &_icon {
+            color: var(--mat-sys-primary);
+            font-size: 2.25rem;
+            height: 2.25rem;
+            width: 2.25rem;
+        }
+
+        &_label {
+            color: var(--mat-sys-primary);
+        }
+    }
+}

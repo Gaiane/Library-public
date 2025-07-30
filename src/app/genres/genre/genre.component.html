@@ -1,0 +1,20 @@
+<!-- Genre -->
+<div class="genre">
+    <!-- Genre title-->
+    <h1 class="genre-title"
+        [style.color]="color()">
+        {{title()}}
+    </h1>
+
+    <!-- All books of genre -->
+    @if(books().length>0) {
+    <div class="books__grid">
+        @for(book of books(); track book) {
+        <lib-book-card [book]="book"></lib-book-card>
+        }
+    </div>
+
+    } @else {
+    <p> {{commonConstans.NO_BOOKS_TEXT}} </p>
+    }
+</div>

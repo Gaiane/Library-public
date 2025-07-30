@@ -1,0 +1,24 @@
+<!-- Header section of the page -->
+<header class="header"
+        role="banner"
+        [attr.aria-label]="headerConstants.ARAI_LABEL">
+
+    <!-- Link to homepage (logo) -->
+    <a class="header-logo"
+       role="link"
+       [attr.aria-label]="headerConstants.LOGO.ARIA_LABEL"
+       [routerLink]="logoLink"
+       [title]="headerConstants.LOGO.TITLE">
+        <img class="header-logo__image"
+             height="60"
+             width="60"
+             [alt]="headerConstants.LOGO.IMAGE_ALT"
+             [src]="logoImageUrl" />
+    </a>
+
+    <!-- Search section in the header -->
+    <div class="header-search"
+         [attr.aria-label]="headerConstants.SEARCH.ARIA_LABEL">
+        <lib-search></lib-search>
+    </div>
+</header>

@@ -1,0 +1,102 @@
+/* ==================
+   Book card styles
+   ================== */
+:host {
+    display: block;
+    max-width: 180px;
+    transition: transform 0.2s ease;
+
+    &:hover {
+        transform: scale(1.03);
+    }
+}
+
+.book {
+
+    /* Book card */
+    &-card {
+        height: 100%;
+        // link
+        &__link {
+            display: block;
+            text-decoration: none;
+        }
+
+        // Read status Toggle 
+        &__read-toggle {
+            align-items: center;
+            background: none;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            outline: none;
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            z-index: 10;
+
+            // Bookmark-Icon
+            &--icon {
+                font-size: 1.75rem;
+                transition: all 0.3s ease;
+
+                &.read {
+                    color: var(--mat-sys-primary);
+                    transform: scale(1.1);
+                }
+
+                &.unread {
+                    color: var(--mat-sys-outline);
+                    opacity: 0.6;
+                }
+            }
+
+            &:hover,
+            &:focus {
+                mat-icon {
+                    opacity: 1;
+                }
+            }
+        }
+
+        // Card title
+        &__title {
+            color: var(--mat-sys-on-surface);
+            font-weight: 500;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+    }
+
+    /* Book Cover */
+    &-cover {
+        height: 200px;
+        object-fit: cover;
+        position: relative;
+        width: 100%;
+
+        // Placeholder icon
+        &__icon {
+            color: var(--mat-sys-outline);
+            font-size: 5rem;
+            height: 5rem;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+            width: 5rem;
+        }
+
+        // Placeholder   
+        &__placeholder {
+            align-items: center;
+            background-color: var(--mat-sys-primary-fixed);
+            border-radius: 10px 10px 0 0;
+            display: flex;
+            height: 200px;
+            justify-content: center;
+            transition: background-color 0.3s ease;
+            width: 100%;
+        }
+    }
+}

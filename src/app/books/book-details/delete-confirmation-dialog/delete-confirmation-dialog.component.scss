@@ -1,0 +1,19 @@
+/* ====================
+   Delete Dialog Styles
+   ==================== */
+   
+.delete-dialog {
+
+    /* Dialog title */
+    &__title {
+        color: var(--mat-sys-primary) !important;
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    /* Dialog actions (buttons) */
+    &__buttons {
+        padding: 20px;
+    }
+}

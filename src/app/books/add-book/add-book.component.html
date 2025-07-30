@@ -1,0 +1,201 @@
+<!-- Add book page-->
+<h1 class="page-title">{{title}}</h1>
+
+<div class="add-book-page">
+    <form class="add-book-page__form"
+          [formGroup]="bookForm"
+          (ngSubmit)="onSubmit()">
+        <!-- Two columns row -->
+        <div class="add-book-page__form-fields two-columns"
+             role="group">
+            <!-- Title -->
+            <mat-form-field appearance="outline"
+                            class="add-book-page__form-field">
+                <mat-label>{{bookDetailsConstants.TITLE}}</mat-label>
+                <input matInput
+                       aria-describedby="title-error"
+                       formControlName="title"
+                       type="text"
+                       [attr.aria-label]="bookFormConstants.ARIA_LABELS.INPUT_TITLE">
+                @if (isFieldInvalid('title')) {
+                <mat-error id="title-error">{{getErrorMessage('title')}}</mat-error>
+                }
+            </mat-form-field>
+
+            <!-- Author -->
+            <mat-form-field appearance="outline"
+                            class="add-book-page__form-field">
+                <mat-label>{{bookDetailsConstants.AUTHOR}}</mat-label>
+                <input matInput
+                       aria-describedby="authors-error"
+                       formControlName="authors"
+                       type="text"
+                       [attr.aria-label]="bookFormConstants.ARIA_LABELS.INPUT_AUTHOR"
+                       [placeholder]="bookFormConstants.INPUT_AUTHOR_PLACEHOLDER">
+                @if (isFieldInvalid('authors')) {
+                <mat-error id="authors-error">{{getErrorMessage('authors')}}</mat-error>
+                }
+            </mat-form-field>
+        </div>
+
+        <!-- Three columns row -->
+        <div class="add-book-page__form-fields four-columns"
+             role="group">
+            <!-- Publisher -->
+            <mat-form-field appearance="outline"
+                            class="add-book-page__form-field">
+                <mat-label>{{bookDetailsConstants.PUBLISHER}}</mat-label>
+                <input matInput
+                       aria-describedby="publisher-error"
+                       formControlName="publisher"
+                       type="text"
+                       [attr.aria-label]="bookFormConstants.ARIA_LABELS.INPUT_PUBLISHER">
+                @if (isFieldInvalid('publisher')) {
+                <mat-error id="publisher-error">{{getErrorMessage('publisher')}}</mat-error>
+                }
+            </mat-form-field>
+
+            <!-- Year -->
+            <mat-form-field appearance="outline"
+                            class="add-book-page__form-field">
+                <mat-label>{{bookDetailsConstants.YEAR}}</mat-label>
+                <input matInput
+                       aria-describedby="year-error"
+                       formControlName="year"
+                       type="text"
+                       [attr.aria-label]="bookFormConstants.ARIA_LABELS.INPUT_YEAR">
+                @if (isFieldInvalid('year')) {
+                <mat-error id="year-error">{{getErrorMessage('year')}}</mat-error>
+                }
+            </mat-form-field>
+
+            <!-- ISBN -->
+            <mat-form-field appearance="outline"
+                            class="add-book-page__form-field">
+                <mat-label>{{bookDetailsConstants.ISBN}}</mat-label>
+                <input matInput
+                       aria-describedby="isbn-error"
+                       formControlName="isbn"
+                       type="text"
+                       [attr.aria-label]="bookFormConstants.ARIA_LABELS.INPUT_ISBN">
+                @if (isbn.hasError("isbnExists")) {
+                <!-- <mat-error id="isbn-error">{{bookFormConstants.ERRORS.ISBN_EXISTS}}</mat-error> -->
+                <mat-error id="isbn-error">{{getErrorMessage('isbn')}}</mat-error>
+                }
+            </mat-form-field>
+
+            <!-- Series -->
+            <mat-form-field appearance="outline"
+                            class="add-book-page__form-field">
+                <mat-label>{{bookDetailsConstants.SERIE}}</mat-label>
+                <input matInput
+                       formControlName="serie"
+                       type="text"
+                       [attr.aria-label]="bookFormConstants.ARIA_LABELS.INPUT_SERIE">
+            </mat-form-field>
+        </div>
+
+        <!-- Four columns row -->
+        <div class="add-book-page__form-fields four-columns"
+             role="group">
+
+            <!-- Type -->
+            <mat-form-field appearance="outline"
+                            class="add-book-page__form-field">
+                <mat-label>{{bookDetailsConstants.TYPE}}</mat-label>
+                <mat-select formControlName="type"
+                            [attr.aria-describedby]="isFieldInvalid('type') ? 'type-error' : null"
+                            [attr.aria-label]="bookFormConstants.ARIA_LABELS.INPUT_TYPE">
+                    @for (type of bookTypes; track type) {
+                    <mat-option [attr.aria-label]="bookDetailsConstants.TYPE + ' ' + type.viewValue"
+                                [value]="type.value">
+                        {{type.viewValue}}
+                    </mat-option>
+                    }
+                </mat-select>
+                @if (isFieldInvalid('type')) {
+                <mat-error id="type-error">{{getErrorMessage('type')}}</mat-error>
+                }
+            </mat-form-field>
+
+            <!-- Genre -->
+            <mat-form-field appearance="outline"
+                            class="add-book-page__form-field">
+                <mat-label>{{bookDetailsConstants.GENRE}}</mat-label>
+                <mat-select formControlName="genre"
+                            [attr.aria-describedby]="isFieldInvalid('genre') ? 'genre-error' : null"
+                            [attr.aria-label]="bookFormConstants.ARIA_LABELS.INPUT_GENRE">
+                    @for (genre of genres(); track genre.id) {
+                    <mat-option [attr.aria-label]="bookDetailsConstants.GENRE + ' ' + genre.label"
+                                [value]="genre.id">
+                        {{genre.label}}
+                    </mat-option>
+                    }
+                </mat-select>
+                @if (isFieldInvalid('genre')) {
+                <mat-error id="genre-error">{{getErrorMessage('genre')}}</mat-error>
+                }
+            </mat-form-field>
+
+            <!-- Language -->
+            <mat-form-field appearance="outline"
+                            class="add-book-page__form-field">
+                <mat-label>{{bookDetailsConstants.LANGUAGE}}</mat-label>
+                <mat-select formControlName="language"
+                            [attr.aria-describedby]="isFieldInvalid('language') ? 'language-error' : null"
+                            [attr.aria-label]="bookFormConstants.ARIA_LABELS.INPUT_LANGUAGE">
+                    @for (item of bookLanguges; track item) {
+                    <mat-option [attr.aria-label]="bookDetailsConstants.LANGUAGE + ' ' + item.value"
+                                [value]="item.value">
+                        {{item.viewValue}}
+                    </mat-option>
+                    }
+                </mat-select>
+                @if (isFieldInvalid('language')) {
+                <mat-error id="language-error">{{getErrorMessage('language')}}</mat-error>
+                }
+            </mat-form-field>
+
+            <!-- Shelf -->
+            <mat-form-field appearance="outline"
+                            class="add-book-page__form-field">
+                <mat-label>{{bookDetailsConstants.SHELF}}</mat-label>
+                <input matInput
+                       formControlName="bookPlace"
+                       type="text"
+                       [attr.aria-label]="bookFormConstants.ARIA_LABELS.INPUT_SHELF">
+            </mat-form-field>
+        </div>
+        <!-- <button mat-raised-button
+                color="primary"
+                (click)="fileInput.click()">
+            <mat-icon>cloud_upload</mat-icon>
+            Choose Image
+        </button>
+        <input type="file"
+               #fileInput
+               accept="image/*"
+               (change)="onFileSelected($event)"
+               hidden />
+        @if (coverImageUrl()) {
+        <mat-card style="margin-top: 20px;">
+            <img [src]="coverImageUrl()"
+                 alt="Uploaded Image"
+                 style="max-width: 100%; height: auto;" />
+            <mat-card-content style="word-break: break-all;">
+                <strong>URL:</strong>
+                <a [href]="coverImageUrl()"
+                   target="_blank">{{ coverImageUrl() }}</a>
+            </mat-card-content>
+        </mat-card>
+        } -->
+        <!-- Submit button -->
+        <div class="add-book-page__form-button">
+            <button mat-flat-button
+                    type="submit"
+                    [attr.aria-label]="buttonConstants.SAVE.ARIA_LABEL(commonConstants.BOOK)">
+                {{buttonConstants.SAVE.LABEL}}
+            </button>
+        </div>
+    </form>
+</div>

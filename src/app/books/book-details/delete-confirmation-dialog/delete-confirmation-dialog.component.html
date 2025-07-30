@@ -1,0 +1,27 @@
+<!-- Delete confirmations dialog -->
+
+<!-- Dialog title -->
+<h2 mat-dialog-title
+    class="delete-dialog__title">
+        Möchten Sie dieses Buch wirklich löschen?
+</h2>
+<!-- Dialog Actions (cancel and confirm) -->
+<mat-dialog-actions class="delete-dialog__buttons">
+
+        <button mat-stroked-button
+                class="dialog__button--cancel"
+                [attr.aria-label]="buttonConstants.CANCEL.ARIA_LABEL"
+                (click)="onCancel()"
+                (keydown.enter)="onCancel()">
+                {{buttonConstants.CANCEL.LABEL}}
+        </button>
+
+        <button mat-flat-button
+                class="dialog__button--agreement"
+                [attr.aria-label]="buttonConstants.DELETE.ARIA_LABEL"
+                (click)="onConfirm()"
+                (keydown.enter)="onConfirm()">
+                {{buttonConstants.DELETE.LABEL}}
+        </button>
+
+</mat-dialog-actions>

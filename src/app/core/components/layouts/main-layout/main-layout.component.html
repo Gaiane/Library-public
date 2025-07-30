@@ -1,0 +1,43 @@
+<!-- Main Layout -->
+<mat-sidenav-container class="sidenav-container">
+    <!-- Side Navigation -->
+    <mat-sidenav #sidenav
+                 aria-label="Side navigation"
+                 class="sidenav"
+                 mode="side"
+                 role="navigation"
+                 [opened]="true">
+
+        <!-- Side Navigation Menu -->
+        <mat-nav-list aria-label="Navigation menu"
+                      claas="sidenav-menu">
+
+            <!-- Side Navigation Menu Items (Links)-->
+            @for(link of sidenavLinks; track link) {
+            <a mat-list-item
+               #rla="routerLinkActive"
+               class="sidenav-menu__item"
+               routerLinkActive
+               [activated]="rla.isActive"
+               [attr.aria-label]="link.label"
+               [routerLink]="link.link"
+               [routerLinkActiveOptions]="{exact: true}">
+                <mat-icon matListItemIcon
+                          class="sidenav-menu__item-icon"
+                          aria-hidden="true">{{link.icon}}</mat-icon>
+                <span matListItemTitle
+                      class="sidenav-menu__item-label">{{link.label}}</span>
+            </a>
+            }
+        </mat-nav-list>
+    </mat-sidenav>
+
+    <!-- Side Navigation Main Content -->
+    <mat-sidenav-content class="sidenav-content">
+        <!-- Main Content Area -->
+        <main aria-label="Main content"
+              class="sidenav-content__main">
+            <router-outlet></router-outlet>
+        </main>
+    </mat-sidenav-content>
+</mat-sidenav-container>
